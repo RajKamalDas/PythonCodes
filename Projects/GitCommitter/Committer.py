@@ -52,6 +52,7 @@ def main():
         archive_deleted_files(deleted_files)
         msg = f"Automated [{date.today()}] : {len(deleted_files)} deleted files Archived."
         for file in deleted_files:
+            shutil.copy(file, ARCHIVE_REPO)
             run_git(f"git add {file}", ARCHIVE_REPO)
         run_git(f'git commit -m "{msg}"', ARCHIVE_REPO)
         run_git(f'git push', ARCHIVE_REPO)
