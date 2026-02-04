@@ -1,0 +1,33 @@
+{
+    "Top10": {
+        "01": {
+            "UserID": "User0002",
+            "Score": 1000,
+            "Version": "v1.0.1",
+            "Date": "10/01/2026"
+        },
+        "02": {
+            "UserID": "User0001",
+            "Score": 100,
+            "Version": "v1.0.1",
+            "Date": "10/01/2026"
+        }
+    },
+    "AllRecords": {
+        "User0001": {
+            "Score": 100,
+            "Version": "v1.0.1",
+            "Date": "10/01/2026"
+        },
+        "User0002": {
+            "Score": 1000,
+            "Version": "v1.0.1",
+            "Date": "10/01/2026"
+        },
+        "User069": {
+            "Score": 1110,
+            "Version": "v1.0.1",
+            "Date": "10/01/2026"
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "python.REPL.enableREPLSmartSend": false,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "black-formatter.args": [
+        "--line-length",
+        "140"
+    ],
+    "editor.formatOnSave": true
+}

@@ -1,0 +1,8 @@
+Level 3: Folder Mimics (Rename Files with Patterns)
+
+
+The Screenshot Renamer 📸 – Rename all .png files in a folder to Screenshot_001 …   |☑
+
+The Date Gremlin 📅 – Add today’s date to all file names.                           |☑
+
+The Extension Shifter  – Change all .txt to .log (don’t actually delete data).      |

@@ -1,0 +1,14 @@
+1) Made the Tracker
+2) Made *This*
+Day:3 > [08 January 2026] > That. *Date*.
+Day:4 > [09 January 2026] > Made it so that only one entry can be added each day.
+Day:5 > [10 January 2026] > Edge-case, & better messages.
+Day:6 > [11 January 2026] > Evaluated the goal & restraint of this program.
+Day:7 > [12 January 2026] > Made a separate reader mode
+Day:8 > [13 January 2026] > Made it resilient to malformed past entries during date check.
+Day:9 > [14 January 2026] > Added an extra barrier to tampering with pre-defined design & practicality.
+Day:10 > [15 January 2026] > Wrote a Docstring for this.
+Day:11 > [16 January 2026] > Attempted to evaluate from an outside perspective.
+Day:12 > [17 January 2026] > Nothing.
+Day:13 > [18 January 2026] > Added Examples to the Docstring.
+Day:14 > [19 January 2026] > Coda.

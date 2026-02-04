@@ -1,0 +1,8 @@
+Level 1: Baby Slimes (Variables + Loops + Conditions)
+
+
+The Dice Goblin 🎲 – Script that rolls a dice 100 times and shows counts for each number.   |☑
+                                                                                            
+The Odd-Even Imp 👹 – Ask the user for a number → say if it’s even or odd.                  |☑
+
+The Compliment Sprite 🌸 – Randomly pick a positive line from a list and print it.          |☑
