@@ -51,16 +51,20 @@ def main():
     if deleted_files:
         archive_deleted_files(deleted_files)
         msg = f"Automated [{date.today()}] : {len(deleted_files)} deleted files Archived."
-        run_git("git add .", ARCHIVE_REPO)
+        for file in deleted_files:
+            run_git(f"git add {file}", ARCHIVE_REPO)
         run_git(f'git commit -m "{msg}"', ARCHIVE_REPO)
+        run_git(f'git push', ARCHIVE_REPO)
 
     # --- Update memory ---
     write_new_files(new_files)
 
     # --- Commit live repo ---
     live_msg = f"[{date.today()}] Automated Commit."
-    run_git("git add .", LIVE_REPO)
+    for file in new_files:
+        run_git(f"git add {file}", LIVE_REPO)
     run_git(f'git commit -m "{live_msg}"', LIVE_REPO)
+    run_git(f"git push", LIVE_REPO)
 
 
 if __name__ == "__main__":
