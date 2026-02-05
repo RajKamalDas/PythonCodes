@@ -2,7 +2,6 @@ def archive_deleted_files(
     deleted_files,
     source_repo="RajKamalDas/PythonCodes",
     archive_repo="RajKamalDas/PythonGraveyard",
-    archive_prefix="",
 ):
     import base64
     import requests
@@ -62,6 +61,6 @@ def archive_deleted_files(
         if not content:
             continue
 
-        upload(archive_repo, f"{archive_prefix}/{path}", content)
+        upload(archive_repo, f"{path}", content)
 
         print(f"{i+1} Done. {path}|{sha}")

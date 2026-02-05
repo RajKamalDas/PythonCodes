@@ -62,7 +62,7 @@ def main():
     # --- Update live repo ---
     live_msg = f"[{date.today()}] Automated Extermination, Moved to Graveyard."
     for file in deleted_files:
-        run_git(f"git rm {file}", LIVE_REPO)
+        run_git(f"git rm --cached {file}", LIVE_REPO)
     run_git(f'git commit -m "{live_msg}"', LIVE_REPO)
     run_git(f"git push", LIVE_REPO)
 

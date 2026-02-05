@@ -1,4 +1,3 @@
-.vscode/settings.json
 ClassWork/BinarySearch.py
 ClassWork/NaryTree.py
 ClassWork/ReverseALinkedList.py
@@ -163,4 +162,3 @@ Training/students.py
 Training/sudoku.py
 Training/sumVal.py
 Training/words.py
-nba.csv
