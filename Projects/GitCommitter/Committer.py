@@ -3,12 +3,12 @@ import shutil
 import subprocess
 from datetime import date
 
-from LogAllFiles import LogAllFiles  # ← your function
+from LogAllFiles import LogAllFiles  # ← your functions
+from Archiver import archive_deleted_files
 
 
 # ===== CONFIG =====
 LIVE_REPO = "C:/Python"
-ARCHIVE_REPO = "C:/PythonGrave"  # Repo B (ABSOLUTE PATH)
 TRACK_FILE = "C:/Python/Projects/GitCommitter/ListOfFiles.txt"
 # ==================
 
@@ -31,34 +31,24 @@ def write_new_files(files):
             f.write(file + "\n")
 
 
-def archive_deleted_files(deleted):
-    for path in deleted:
-        src = path.lstrip("./")
-        dst = os.path.join(ARCHIVE_REPO, src)
-
-        if os.path.exists(src):
-            os.makedirs(os.path.dirname(dst), exist_ok=True)
-            shutil.copy2(src, dst)
-
-
 def main():
     old_files = read_old_files()
     new_files = LogAllFiles()
+
+    print("Loaded")
 
     deleted_files = old_files - new_files
 
     # --- Archive deletes ---
     if deleted_files:
-        archive_deleted_files(deleted_files)
-        msg = f"Automated [{date.today()}] : {len(deleted_files)} deleted files Archived."
-        for file in deleted_files:
-            shutil.copy(file, ARCHIVE_REPO)
-            run_git(f"git add {file}", ARCHIVE_REPO)
-        run_git(f'git commit -m "{msg}"', ARCHIVE_REPO)
-        run_git(f'git push', ARCHIVE_REPO)
+        archive_deleted_files({each.lstrip("./") for each in deleted_files})
+
+    print("Done Archiving")
 
     # --- Update memory ---
     write_new_files(new_files)
+
+    print("Updated Log")
 
     # --- Commit live repo ---
     live_msg = f"[{date.today()}] Automated Commit."
@@ -66,6 +56,17 @@ def main():
         run_git(f"git add {file}", LIVE_REPO)
     run_git(f'git commit -m "{live_msg}"', LIVE_REPO)
     run_git(f"git push", LIVE_REPO)
+
+    print("Pushed New files")
+
+    # --- Update live repo ---
+    live_msg = f"[{date.today()}] Automated Extermination, Moved to Graveyard."
+    for file in deleted_files:
+        run_git(f"git rm {file}", LIVE_REPO)
+    run_git(f'git commit -m "{live_msg}"', LIVE_REPO)
+    run_git(f"git push", LIVE_REPO)
+
+    print("Pushed Old files")
 
 
 if __name__ == "__main__":
