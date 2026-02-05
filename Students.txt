@@ -1,3 +1,0 @@
-001, Me, CAT
-010, Myself, BCA
-100, I, NONE
