@@ -53,6 +53,8 @@ def main():
     # --- Commit live repo ---
     live_msg = f"[{date.today()}] Automated Commit."
     for file in new_files:
+        if file.startswith(".") or "/." in file or "-P-" in file:
+            continue
         run_git(f"git add {file}", LIVE_REPO)
     run_git(f'git commit -m "{live_msg}"', LIVE_REPO)
     run_git(f"git push", LIVE_REPO)

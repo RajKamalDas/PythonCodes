@@ -47,12 +47,15 @@ def archive_deleted_files(
                 "content": base64.b64encode(content).decode("utf-8"),
                 "committer": {
                     "name": "Auto Archive Bot",
-                    "email": "archive@users.noreply.github.com",
+                    "email": "rajkamaldas03@gmail.com",
                 },
             },
         )
 
     for i, path in enumerate(deleted_files):
+        if ".code-workspace" in path or "-P-" in path or "/." in path:
+            continue
+
         sha = last_commit_for_file(source_repo, path)
         if not sha:
             continue

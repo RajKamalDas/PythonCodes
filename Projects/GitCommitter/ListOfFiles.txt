@@ -96,7 +96,7 @@ Projects/MineSweeper/build/MineSweeper/localpycs/struct.pyc
 Projects/MineSweeper/build/MineSweeper/warn-MineSweeper.txt
 Projects/MineSweeper/build/MineSweeper/xref-MineSweeper.html
 Projects/MineSweeper/dist/MineSweeper.exe
-Students.txt
+README.md
 Training/CSV.py
 Training/Calculator.py
 Training/CaseCount.py
@@ -122,9 +122,9 @@ Training/Playlist.txt
 Training/Points.txt
 Training/ProjectileMath.py
 Training/Queue.py
-Training/README.md
 Training/SortDict.py
 Training/Stack.py
+Training/Students.txt
 Training/Teacher.py
 Training/TestMath.py
 Training/UpdateDict.py
