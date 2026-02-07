@@ -50,25 +50,29 @@ def main():
 
     print("Updated Log")
 
-    # --- Commit live repo ---
-    live_msg = f"[{date.today()}] Automated Commit."
-    for file in new_files:
-        if file.startswith(".") or "/." in file or "-P-" in file:
-            continue
-        run_git(f"git add {file}", LIVE_REPO)
-    run_git(f'git commit -m "{live_msg}"', LIVE_REPO)
-    run_git(f"git push", LIVE_REPO)
-
-    print("Pushed New files")
-
     # --- Update live repo ---
-    live_msg = f"[{date.today()}] Automated Extermination, Moved to Graveyard."
-    for file in deleted_files:
-        run_git(f"git rm --cached {file}", LIVE_REPO)
+    if deleted_files:
+        live_msg = f"[{date.today()}] Automated Updation and Deletion of Tracked files."
+    else:
+        live_msg = f"[{date.today()}] Automated Updation of Tracked files."
+    run_git(f"git add -u", LIVE_REPO)
     run_git(f'git commit -m "{live_msg}"', LIVE_REPO)
     run_git(f"git push", LIVE_REPO)
 
     print("Pushed Old files")
+
+    untrackedFiles = new_files - old_files
+    if untrackedFiles:
+        # --- Commit live repo ---
+        live_msg = f"[{date.today()}] Automated Addition Commit."
+        for file in untrackedFiles:
+            if file.startswith(".") or "/." in file or "-P-" in file:
+                continue
+            run_git(f"git add {file}", LIVE_REPO)
+        run_git(f'git commit -m "{live_msg}"', LIVE_REPO)
+        run_git(f"git push", LIVE_REPO)
+
+        print("Pushed New files")
 
     print("Quitting.")
 

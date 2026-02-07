@@ -61,7 +61,6 @@ Projects/GitCommitter/__pycache__/LogAllFiles.cpython-314.pyc
 Projects/ML/CNNModel.pkl
 Projects/ML/LoadTest.py
 Projects/ML/TestRun.py
-Projects/ML/img.pkl
 Projects/MassMover/MassMover.spec
 Projects/MassMover/build/MassMover/Analysis-00.toc
 Projects/MassMover/build/MassMover/EXE-00.toc
@@ -96,6 +95,7 @@ Projects/MineSweeper/build/MineSweeper/localpycs/struct.pyc
 Projects/MineSweeper/build/MineSweeper/warn-MineSweeper.txt
 Projects/MineSweeper/build/MineSweeper/xref-MineSweeper.html
 Projects/MineSweeper/dist/MineSweeper.exe
+Projects/img.pkl
 README.md
 Training/CSV.py
 Training/Calculator.py
