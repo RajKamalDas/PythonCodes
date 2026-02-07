@@ -43,7 +43,7 @@ def main():
     if deleted_files:
         archive_deleted_files({each.lstrip("./") for each in deleted_files})
 
-    print("Done Archiving")
+        print("Done Archiving")
 
     # --- Update memory ---
     write_new_files(new_files)
@@ -69,6 +69,8 @@ def main():
     run_git(f"git push", LIVE_REPO)
 
     print("Pushed Old files")
+
+    print("Quitting.")
 
 
 if __name__ == "__main__":
