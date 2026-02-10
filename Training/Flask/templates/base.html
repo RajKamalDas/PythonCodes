@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Folio</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+
+        <details class="dropdown" id="projects-dropdown">
+            <summary>Projects</summary>
+            <div class="menu">
+                <a href="/projects/web">Web & API</a>
+                <a href="/projects/desktop">Desktop Utility</a>
+                <a href="/projects/fun">Fun</a>
+            </div>
+        </details>
+    </nav>
+    <hr>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+
+</html>
+
+<script>
+    document.addEventListener("click", (e) => {
+        const dropdown = document.getElementById("projects-dropdown");
+        if (!dropdown.contains(e.target)) {
+            dropdown.removeAttribute("open");
+        }
+    });
+</script>

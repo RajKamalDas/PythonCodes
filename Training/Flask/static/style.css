@@ -1,0 +1,59 @@
+*{
+    font-family: 'Times New Roman', Times, serif;
+}
+
+details {
+    display: inline-block;
+    position: relative;
+}
+
+details a {
+    margin-left: 10px;
+    width: auto;
+    white-space: nowrap;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.dropdown {
+    position: relative;
+}
+
+summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+.menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: flex;
+    gap: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    background: #ffffff;
+
+    border: 1px solid black;
+
+    opacity: 0;
+    transform: translateY(-5px);
+    pointer-events: none;
+
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.dropdown[open] .menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
