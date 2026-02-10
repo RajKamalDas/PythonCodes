@@ -1,8 +1,0 @@
-Level 2: File Golems (Read/Write Files)
-
-
-The Journal Slime 📓 – Append a line to a .txt file every time the script runs.     |☑
-
-The Line Counter Ooze 🟩 – Count how many lines a text file has.                    |☑
-
-The Echo Skeleton 💀 – Copy one text file into another, line by line.               |☑

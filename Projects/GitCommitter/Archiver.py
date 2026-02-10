@@ -53,7 +53,7 @@ def archive_deleted_files(
         )
 
     for i, path in enumerate(deleted_files):
-        if ".code-workspace" in path or "-P-" in path or "/." in path:
+        if ".code-workspace" in path or "-P-" in path or "/." in path or "./" in path:
             continue
 
         sha = last_commit_for_file(source_repo, path)
