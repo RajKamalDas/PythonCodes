@@ -2,7 +2,7 @@ import os
 
 
 def LogAllFiles():
-    ignore = [".git", ".vscode", ".code-workspace", "venv", "-P-", "/."]
+    ignore = [".git", ".vscode", ".code-workspace", "venv", "VEnv", "-P-", "/."]
     allFiles = []
 
     for root, _, files in os.walk("C:/Python"):

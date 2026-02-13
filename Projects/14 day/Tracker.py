@@ -11,7 +11,9 @@ class Tracker:
         self.launch()
 
     def load(self):
-        self.path = os.getcwd().replace("\\", "/") + "/Projects/14 day/Tracker.py/record.ini"
+        self.path = os.getcwd().replace("\\", "/")
+        if not "/Projects/14 day/record.ini" in self.path:
+            self.path = self.path + "/Projects/14 day/record.ini"
         loader = configparser.ConfigParser()
         if os.path.exists(self.path):
             loader.read(self.path)
