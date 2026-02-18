@@ -6,6 +6,7 @@ ClassWork/ToH.py
 ClassWork/Transpose.py
 ClassWork/Tree.py
 InstallProcess.txt
+Library.db
 Others/5minSpam.py
 Others/APITest.py
 Others/Drawing.py
