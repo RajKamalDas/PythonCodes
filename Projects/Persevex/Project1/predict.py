@@ -36,9 +36,6 @@ new_employee = pd.DataFrame(
             "YearsInCurrentRole": 3,
             "YearsSinceLastPromotion": 1,
             "YearsWithCurrManager": 3,
-            "HourlyRate": 65,
-            "DailyRate": 800,
-            "MonthlyRate": 18000,
         }
     ]
 )
@@ -47,5 +44,6 @@ try:
     # Predict probability with the model
     risk_score = pipeline.predict_proba(new_employee)[0][1]
     print(f"Attrition Risk Score: {risk_score:.2%}")
+    
 except ValueError as e:
     print(f"Missing the following values in input:{e}")

@@ -80,11 +80,10 @@ Projects/MineSweeper/build/MineSweeper/warn-MineSweeper.txt
 Projects/MineSweeper/build/MineSweeper/xref-MineSweeper.html
 Projects/MineSweeper/dist/MineSweeper.exe
 Projects/Persevex/Project1/Employee Attrition.ipynb
-Projects/Persevex/Project1/The_Sea_as_Fate_in_Riders_to_the_Sea.pdf
+Projects/Persevex/Project1/Executive_HR_Report.pdf
 Projects/Persevex/Project1/attrition_pipeline.pkl
 Projects/Persevex/Project1/predict.py
 Projects/Persevex/Project1/requirements.txt
-Projects/Persevex/Project1/test.py
 Projects/img.pkl
 README.md
 Training/CSV.py
@@ -131,7 +130,32 @@ Training/Teacher.py
 Training/TestMath.py
 Training/UpdateDict.py
 Training/VowelConsonant.py
-Training/WebProject.rar
+Training/WebProject/Library.db
+Training/WebProject/MakeDB.py
+Training/WebProject/Requirements/Abstract.docx
+Training/WebProject/Requirements/DataFlow.drawio.png
+Training/WebProject/Requirements/Design.png
+Training/WebProject/Requirements/Forms.docx
+Training/WebProject/Requirements/UserFlow.drawio.png
+Training/WebProject/Requirements/eLibrary Pitch.pptx
+Training/WebProject/Requirements/requirments.txt
+Training/WebProject/WebProject.rar
+Training/WebProject/app.py
+Training/WebProject/books/Dantes_Inferno-Dante_Alighieri.pdf
+Training/WebProject/books/The_Autobiography_of_Benjamin_Franklin-Benjamin_Franklin.pdf
+Training/WebProject/books/The_Wisdom_of_Father_Brown-G._K._Chesterton.pdf
+Training/WebProject/static/image.png
+Training/WebProject/static/script.js
+Training/WebProject/static/style.css
+Training/WebProject/templates/admin.html
+Training/WebProject/templates/adminlogin.html
+Training/WebProject/templates/base.html
+Training/WebProject/templates/home.html
+Training/WebProject/templates/librarian.html
+Training/WebProject/templates/librarianlogin.html
+Training/WebProject/templates/library.html
+Training/WebProject/templates/login.html
+Training/WebProject/templates/signup.html
 Training/abstraction.py
 Training/calc.py
 Training/class.py
