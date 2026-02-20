@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        margin: 0;
+    }
+
+    .container {
+        min-height: calc(100vh - 70px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #667eea, #1cc88a);
+    }
+
+    .login-card {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 60px;
+        border-radius: 24px;
+        width: 420px;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        box-sizing: border-box;
+    }
+
+    .login-card h2 {
+        text-align: center;
+        color: #ffffff;
+        font-size: 32px;
+        margin-bottom: 45px;
+        width: 100%;
+    }
+
+
+    .form-group {
+        width: 100%;
+        margin-bottom: 28px;
+    }
+
+
+    .form-group label {
+        display: block;
+        color: #ffffff;
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+
+    .form-group input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 15px 18px;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        background: rgba(255, 255, 255, 0.20);
+        color: #ffffff;
+        outline: none;
+        font-size: 14px;
+        transition: 0.3s ease;
+    }
+
+    .form-group input::placeholder {
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .form-group input:focus {
+        border: 1px solid #1cc88a;
+        box-shadow: 0 0 12px rgba(28, 200, 138, 0.7);
+    }
+
+    .password-box {
+        position: relative;
+    }
+
+    .password-box input {
+        padding-right: 45px;
+    }
+
+    .toggle-btn {
+        position: absolute;
+        right: 18px;
+        top: 50%;
+        cursor: pointer;
+        font-size: 18px;
+        color: #ffffff;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(45deg, #667eea, #1cc88a);
+        border: none;
+        border-radius: 18px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 10px;
+        font-size: 15px;
+        transition: 0.3s ease;
+    }
+
+    .submit-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+</style>
+
+<div class="container">
+    <form method="POST" action="{{ url_for('librarianlogin') }}" class="login-card">
+
+        <h2>Librarian Login</h2>
+        {% if error %}
+        {% if not "Password" in error %}
+        <p style="color: red; background-color: #ffffff43;">{{ error }}</p>
+        {% endif %}
+        {% endif %}
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" placeholder="Enter Username" name="username" required>
+        </div>
+        {% if error %}
+        {% if "Password" in error %}
+        <p style="color: red; background-color: #ffffff43;">{{ error }}</p>
+        {% endif %}
+        {% endif %}
+        <div class="form-group password-box">
+            <label>Password</label>
+            <input type="password" placeholder="Enter Password" id="password" name="password" required>
+            <span class="toggle-btn" onclick="togglePassword()">👁</span>
+        </div>
+
+        <button type="submit" class="submit-btn">Login</button>
+
+    </form>
+</div>
+
+
+<script>
+    function togglePassword() {
+        var pass = document.getElementById("password");
+        if (pass.type === "password") {
+            pass.type = "text";
+        } else {
+            pass.type = "password";
+        }
+    }
+</script>
+{% endblock %}

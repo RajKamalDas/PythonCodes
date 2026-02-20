@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2><pre>
+Welcome to Our E-Library
+
+Our E-Library is a digital platform where you can read, search, and download books anytime and anywhere. 
+It provides a wide collection of academic books, novels, journals, and study materials.
+
+Our goal is to make learning easy, fast, and accessible for everyone. Explore knowledge with just one click!
+</pre></h2><br>
+<center>
+<table>
+<tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Pages</th>
+    <th>Size</th>
+    <th>Download</th>
+</tr>
+
+{% for row in data %}
+<tr>
+    <td>{{ row[1] }}</td>
+    <td>{{ row[2] }}</td>
+    <td>{{ row[3] }}</td>
+    <td>{{ row[4] }}</td>   
+    <td>
+        {% if row[5] %}
+        <a href="/books/{{ row[5] }}">Download</a>
+        {% else %} N/A {% endif %}
+    </td>
+</tr>
+{% endfor %}
+</table></center>
+<a href="/signup" class="bt">SIGNUP</a>
+
+{% endblock %}
+

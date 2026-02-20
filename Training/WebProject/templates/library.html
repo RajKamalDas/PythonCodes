@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    table{
+        width: 100%;
+    }
+</style>
+<h1>📚 LIBRARY</h1>
+
+<div class="container">
+
+    <form method="POST" autocomplete="off">
+        <div>
+            <input type="text" name="search" id="searchInput" placeholder="Search by title..."
+                onkeyup="showSuggestions()">
+
+            <div id="suggestionBox" class="suggestions"></div>
+        </div>
+
+        <button type="submit">Search</button>
+        <a href="/"><button type="button">Reset</button></a>
+    </form>
+
+    <table width="100%">
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Pages</th>
+            <th>Size</th>
+            <th>Download</th>
+        </tr>
+
+        {% for book in books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.pages }}</td>
+            <td>{{ book.size }}</td>
+            <td>
+                <a href="{{ url_for('books', filename=book.loc) }}">
+                    Download
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</div>
+
+{% endblock %}
