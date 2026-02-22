@@ -16,29 +16,3 @@ if (dropdown) {
         }
     });
 }
-
-function showSuggestions() {
-    let query = document.getElementById("searchInput").value;
-
-    if (query.length < 1) {
-        document.getElementById("suggestionBox").innerHTML = "";
-        return;
-    }
-
-    fetch(`/suggest?q=${query}`)
-        .then(response => response.json())
-        .then(data => {
-            let suggestionBox = document.getElementById("suggestionBox");
-            suggestionBox.innerHTML = "";
-
-            data.forEach(item => {
-                let div = document.createElement("div");
-                div.innerText = item;
-                div.onclick = function () {
-                    document.getElementById("searchInput").value = item;
-                    suggestionBox.innerHTML = "";
-                };
-                suggestionBox.appendChild(div);
-            });
-        });
-}

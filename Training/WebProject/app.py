@@ -153,6 +153,7 @@ def librarian():
             (f"%{search}%", f"%{search}%"),
         )
     else:
+        search = ""
         cursor.execute(
             """
             SELECT * FROM books
@@ -177,7 +178,7 @@ def suggest():
 
     if not query:
         return jsonify([])
-
+    
     conn = db()
     cursor = conn.cursor()
 
@@ -194,7 +195,6 @@ def suggest():
     conn.close()
 
     suggestions = [{"title": row["title"], "author": row["author"]} for row in results]
-
     return jsonify(suggestions)
 
 
@@ -357,10 +357,32 @@ def library():
         return redirect("/login")
 
     DB = db()
-    data = DB.execute("select title, author, pages, size, loc from books").fetchall()
+    cursor = DB.cursor()
+    
+    search = request.args.get("search")
+
+    if search:
+        cursor.execute(
+            """
+            SELECT * FROM books
+            WHERE title LIKE ? OR author LIKE ?
+        """,
+            (f"%{search}%", f"%{search}%"),
+        )
+    else:
+        search = ""
+        cursor.execute(
+            """
+            SELECT * FROM books
+            ORDER BY id DESC
+            LIMIT 10
+        """
+        )
+
+    books = cursor.fetchall()
     DB.close()
 
-    return render_template("library.html", books=data)
+    return render_template("library.html", books=books, search=search)
 
 
 @app.route("/admin")

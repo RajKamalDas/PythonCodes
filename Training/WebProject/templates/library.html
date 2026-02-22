@@ -2,7 +2,7 @@
 
 {% block content %}
 <style>
-    table{
+    table {
         width: 100%;
     }
 </style>
@@ -10,16 +10,21 @@
 
 <div class="container">
 
-    <form method="POST" autocomplete="off">
+    <form method="GET" autocomplete="off">
         <div>
-            <input type="text" name="search" id="searchInput" placeholder="Search by title..."
+            <input type="text" name="search" id="searchInput" placeholder="Search by title..." value="{{ search }}"
                 onkeyup="showSuggestions()">
 
-            <div id="suggestionBox" class="suggestions"></div>
+            <div id="suggestionBox" style="position:absolute;
+                    background:white;
+                    border:1px solid #ccc;
+                    width:250px;
+                    z-index:1000;">
+            </div>
         </div>
 
         <button type="submit">Search</button>
-        <a href="/"><button type="button">Reset</button></a>
+        <a href="/library"><button type="button">Reset</button></a>
     </form>
 
     <table width="100%">
@@ -48,5 +53,41 @@
     </table>
 
 </div>
+<script>
+    function showSuggestions() {
+
+        let query = document.getElementById("searchInput").value;
+
+        if (query.length < 1) {
+            document.getElementById("suggestionBox").innerHTML = "";
+            return;
+        }
+
+        fetch("/suggest?q=" + query)
+            .then(response => response.json())
+            .then(data => {
+
+                let suggestionBox = document.getElementById("suggestionBox");
+                suggestionBox.innerHTML = "";
+
+                data.forEach(item => {
+                    let div = document.createElement("div");
+                    div.style.padding = "6px";
+                    div.style.cursor = "pointer";
+                    div.style.borderBottom = "1px solid #eee";
+
+                    div.innerHTML = "<strong>" + item.title +
+                        "</strong><br><small>" + item.author + "</small>";
+
+                    div.onclick = function () {
+                        document.getElementById("searchInput").value = item.title;
+                        suggestionBox.innerHTML = "";
+                    };
+
+                    suggestionBox.appendChild(div);
+                });
+            });
+    }
+</script>
 
 {% endblock %}
