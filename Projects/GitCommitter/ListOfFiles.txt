@@ -86,6 +86,13 @@ Projects/Persevex/Project 1/Executive_HR_Report.pdf
 Projects/Persevex/Project 1/attrition_pipeline.pkl
 Projects/Persevex/Project 1/predict.py
 Projects/Persevex/Project 1/requirements.txt
+Projects/Persevex/Project 2.zip
+Projects/Persevex/Project 2/Executive Summary.pdf
+Projects/Persevex/Project 2/market_basket_analysis_project.ipynb
+Projects/Persevex/Project 2/order_products__prior.csv
+Projects/Persevex/Project 2/product_association_network.png
+Projects/Persevex/Project 2/products.csv
+Projects/Persevex/Project 2/rules.py
 Projects/img.pkl
 README.md
 Training/CSV.py
