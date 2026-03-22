@@ -1,80 +1,134 @@
-import os
-import shutil
-import subprocess
+import os, tempfile, shutil
 from datetime import date
+from git import Repo
 
-from LogAllFiles import LogAllFiles  
-from Archiver import archive_deleted_files
-
-
-# ===== CONFIG =====
-LIVE_REPO = "C:/Python"
-TRACK_FILE = "C:/Python/Projects/GitCommitter/ListOfFiles.txt"
-# ==================
+ROOT = "C:/Python"
+LIVE_REPO_PATH = ROOT
+ARCHIVE_REMOTE = "git@github.com:RajKamalDas/PythonGraveyard.git"
+LOG_FILE = "Projects/GitCommitter/ListOfFiles.txt"
 
 
-def run_git(cmd, cwd):
-    subprocess.run(cmd, cwd=cwd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, shell=True)
+# ---------- Utils ----------
 
 
-def read_old_files():
-    if not os.path.exists(TRACK_FILE):
+def should_ignore(path):
+    return path.startswith(".") or "/." in path or "-P-" in path
+
+
+def scan_files():
+    files = set()
+    for root, _, filenames in os.walk(ROOT):
+        for f in filenames:
+            full = os.path.join(root, f)
+            rel = os.path.relpath(full, ROOT).replace("\\", "/")
+            if not should_ignore(rel):
+                files.add(rel)
+    return files
+
+
+def read_old():
+    if not os.path.exists(LOG_FILE):
         return set()
-    with open(TRACK_FILE, "r", encoding="utf-8") as f:
-        return set(line.strip() for line in f if line.strip())
+    with open(LOG_FILE) as f:
+        return set(line.strip() for line in f)
 
 
-def write_new_files(files):
-    os.makedirs(os.path.dirname(TRACK_FILE), exist_ok=True)
-    with open(TRACK_FILE, "w", encoding="utf-8") as f:
+def write_new(files):
+    with open(LOG_FILE, "w") as f:
         for file in sorted(files):
             f.write(file + "\n")
 
 
+def safe_delete(path):
+    import time
+
+    for _ in range(5):
+        try:
+            shutil.rmtree(path)
+            return
+        except PermissionError:
+            time.sleep(0.5)
+
+
+# ---------- Archive Logic ----------
+
+
+def archive_deleted(repoA, deleted_files):
+    if not deleted_files:
+        return
+
+    commit = repoA.head.commit
+    temp_dir = tempfile.mkdtemp()
+
+    try:
+        repoB = Repo.init(temp_dir)
+        repoB.create_remote("origin", ARCHIVE_REMOTE)
+
+        added = []
+
+        for file in deleted_files:
+            try:
+                blob = commit.tree / file
+                content = blob.data_stream.read()
+
+                dest = os.path.join(temp_dir, file)
+                os.makedirs(os.path.dirname(dest), exist_ok=True)
+
+                with open(dest, "wb") as f:
+                    f.write(content)
+
+                added.append(file)
+
+            except KeyError:
+                continue  # file never committed before
+
+        if added:
+            repoB.index.add(added)
+            repoB.index.commit(f"[{date.today()}] My you RIP")
+            repoB.git.branch("-M", "main")
+            repoB.remote("origin").push(refspec="main:main")
+
+    finally:
+        safe_delete(temp_dir)
+
+
+# ---------- Live Repo Sync ----------
+
+
+def sync_live(repoA):
+    # Add/update new + modified
+    repoA.git.add(A=True)
+
+    if repoA.is_dirty(untracked_files=True):
+        repoA.index.commit(f"[{date.today()}] The Dragon gets Gold Shipment.")
+        repoA.remote("origin").push()
+
+
+# ---------- Main ----------
+
+
 def main():
-    old_files = read_old_files()
-    new_files = LogAllFiles()
+    repoA = Repo(LIVE_REPO_PATH)
 
-    print("Loaded")
+    old_files = read_old()
+    new_files = scan_files()
 
-    deleted_files = old_files - new_files
+    deleted = old_files - new_files
 
-    # --- Archive deletes ---
-    if deleted_files:
-        archive_deleted_files({each.lstrip("./") for each in deleted_files})
+    print("Scanned.")
 
-        print("Done Archiving")
+    # Step 1: Archive from history BEFORE modifying repoA
+    archive_deleted(repoA, deleted)
+    print("Archived.")
 
-    # --- Update memory ---
-    write_new_files(new_files)
+    # Step 2: Sync live repo
+    sync_live(repoA)
+    print("Live updated.")
 
-    print("Updated Log")
+    # Step 3: Update memory LAST
+    write_new(new_files)
 
-    # --- Update live repo ---
-    if deleted_files:
-        live_msg = f"[{date.today()}] Automated Updation and Deletion of Tracked files."
-    else:
-        live_msg = f"[{date.today()}] Automated Updation of Tracked files."
-    run_git(f"git add -u", LIVE_REPO)
-    run_git(f'git commit -m "{live_msg}"', LIVE_REPO)
-    run_git(f"git push", LIVE_REPO)
-
-    print("Pushed Old files")
-
-    untrackedFiles = new_files - old_files
-    if untrackedFiles:
-        # --- Commit live repo ---
-        live_msg = f"[{date.today()}] Automated Addition Commit."
-        for file in untrackedFiles:
-            if file.startswith(".") or "/." in file or "-P-" in file:
-                continue
-            run_git(f"git add {file}", LIVE_REPO)
-        run_git(f'git commit -m "{live_msg}"', LIVE_REPO)
-        run_git(f"git push", LIVE_REPO)
-
-        print("Pushed New files")
-
-    print("Quitting.")
+    print("Done.")
 
 
 if __name__ == "__main__":

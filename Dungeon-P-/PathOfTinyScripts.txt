@@ -1,0 +1,75 @@
+🗡️ Path of Tiny Scripts – Monster List
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+Level 1: Baby Slimes (Variables + Loops + Conditions)
+You’re learning to swing a wooden sword here.
+
+Monsters:
+
+The Dice Goblin 🎲 – Script that rolls a dice 100 times and shows counts for each number.
+
+The Odd-Even Imp 👹 – Ask the user for a number → say if it’s even or odd.
+
+The Compliment Sprite 🌸 – Randomly pick a positive line from a list and print it.
+
+XP: Teaches input/output, lists, loops, and if/else.
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+Level 2: File Golems (Read/Write Files)
+You now enter the caves where files roam.
+
+Monsters:
+
+The Journal Slime 📓 – Append a line to a .txt file every time the script runs.
+
+The Line Counter Ooze 🟩 – Count how many lines a text file has.
+
+The Echo Skeleton 💀 – Copy one text file into another, line by line.
+
+XP: Teaches file handling (open, read, write, with statements).
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+Level 3: Folder Mimics (Rename Files with Patterns)
+The garden’s old shed is full of shapeshifting files.
+
+Monsters:
+
+The Screenshot Renamer 📸 – Rename all .png files in a folder to Screenshot_001 …
+
+The Date Gremlin 📅 – Add today’s date to all file names.
+
+The Extension Shifter 🪄 – Change all .txt to .log (don’t actually delete data).
+
+XP: Teaches os, os.listdir, and os.rename basics.
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+💀 Boss Fight: The Librarian of Order (Mini <100-line Project)
+Quest:
+
+“Tame the chaotic folder!”
+
+User points script to a folder
+
+Script organizes files into subfolders by type:
+
+Images → /Images
+
+Videos → /Videos
+
+Text → /Text
+
+Optional twist: Print a short report → “Moved 12 images, 5 videos…”
+
+🎖 XP Drop: Combines loops, conditions, file handling, and os functions into a single “I control my PC now” script.
