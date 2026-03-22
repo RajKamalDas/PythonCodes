@@ -85,6 +85,7 @@ def archive_deleted(repoA, deleted_files):
         if added:
             repoB.index.add(added)
             repoB.index.commit(f"[{date.today()}] My you RIP")
+            repoB.git.branch("-M", "main")
             repoB.remote("origin").push(refspec="main:main")
 
     finally:
