@@ -79,12 +79,12 @@ def archive_deleted(repoA, deleted_files):
                 added.append(file)
 
             except KeyError:
+                print("NEVER WAS")
                 continue  # file never committed before
 
         if added:
             repoB.index.add(added)
             repoB.index.commit(f"[{date.today()}] My you RIP")
-            repoB.git.branch("-M", "main")
             repoB.remote("origin").push(refspec="main:main")
 
     finally:
