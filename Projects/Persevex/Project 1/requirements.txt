@@ -1,0 +1,7 @@
+imbalanced-learn==0.14.1    #For the notebook only
+kagglehub==0.3.13           #For the notebook only
+matplotlib==3.10.0          #For the notebook only
+numpy==2.0.2                #For the notebook only
+pandas==2.3.3
+seaborn==0.13.2             #For the notebook only
+scikit-learn==1.8.0
