@@ -61,8 +61,7 @@ def archive_deleted(repoA, deleted_files):
     temp_dir = tempfile.mkdtemp()
 
     try:
-        repoB = Repo.init(temp_dir)
-        repoB.create_remote("origin", ARCHIVE_REMOTE)
+        repoB = Repo.clone_from(ARCHIVE_REMOTE, temp_dir, no_checkout=True)
 
         added = []
 

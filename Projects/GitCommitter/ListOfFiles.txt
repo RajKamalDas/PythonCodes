@@ -5,9 +5,7 @@ ClassWork/Sorts.py
 ClassWork/ToH.py
 ClassWork/Transpose.py
 ClassWork/Tree.py
-For Fun/Whatever this grid thing is/GridNotRigid.py
 InstallProcess.txt
-Library.db
 Others/5minSpam.py
 Others/APITest.py
 Others/Drawing.py
@@ -80,20 +78,6 @@ Projects/MineSweeper/build/MineSweeper/localpycs/struct.pyc
 Projects/MineSweeper/build/MineSweeper/warn-MineSweeper.txt
 Projects/MineSweeper/build/MineSweeper/xref-MineSweeper.html
 Projects/MineSweeper/dist/MineSweeper.exe
-Projects/Persevex/Project 1.pptx
-Projects/Persevex/Project 1.rar
-Projects/Persevex/Project 1/Employee Attrition.ipynb
-Projects/Persevex/Project 1/Executive_HR_Report.pdf
-Projects/Persevex/Project 1/attrition_pipeline.pkl
-Projects/Persevex/Project 1/predict.py
-Projects/Persevex/Project 1/requirements.txt
-Projects/Persevex/Project 2.zip
-Projects/Persevex/Project 2/Executive Summary.pdf
-Projects/Persevex/Project 2/market_basket_analysis_project.ipynb
-Projects/Persevex/Project 2/order_products__prior.csv
-Projects/Persevex/Project 2/product_association_network.png
-Projects/Persevex/Project 2/products.csv
-Projects/Persevex/Project 2/rules.py
 Projects/img.pkl
 README.md
 Training/CSV.py
@@ -133,8 +117,6 @@ Training/Playlist.txt
 Training/Points.txt
 Training/ProjectileMath.py
 Training/Queue.py
-Training/REST API/app.ipynb
-Training/REST API/app.py
 Training/SortDict.py
 Training/Stack.py
 Training/Students.txt
@@ -142,32 +124,6 @@ Training/Teacher.py
 Training/TestMath.py
 Training/UpdateDict.py
 Training/VowelConsonant.py
-Training/WebProject/Library.db
-Training/WebProject/MakeDB.py
-Training/WebProject/Requirements/Abstract.docx
-Training/WebProject/Requirements/DataFlow.drawio.png
-Training/WebProject/Requirements/Design.png
-Training/WebProject/Requirements/Forms.docx
-Training/WebProject/Requirements/UserFlow.drawio.png
-Training/WebProject/Requirements/eLibrary Pitch.pptx
-Training/WebProject/Requirements/requirments.txt
-Training/WebProject/WebProject.rar
-Training/WebProject/app.py
-Training/WebProject/books/Dantes_Inferno-Dante_Alighieri.pdf
-Training/WebProject/books/The_Autobiography_of_Benjamin_Franklin-Benjamin_Franklin.pdf
-Training/WebProject/books/The_Wisdom_of_Father_Brown-G._K._Chesterton.pdf
-Training/WebProject/static/image.png
-Training/WebProject/static/script.js
-Training/WebProject/static/style.css
-Training/WebProject/templates/admin.html
-Training/WebProject/templates/adminlogin.html
-Training/WebProject/templates/base.html
-Training/WebProject/templates/home.html
-Training/WebProject/templates/librarian.html
-Training/WebProject/templates/librarianlogin.html
-Training/WebProject/templates/library.html
-Training/WebProject/templates/login.html
-Training/WebProject/templates/signup.html
 Training/abstraction.py
 Training/calc.py
 Training/class.py
