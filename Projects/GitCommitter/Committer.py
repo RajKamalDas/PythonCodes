@@ -24,17 +24,17 @@ def should_ignore(path):
 
 def scan_files():
     allowedFiles = set()
-    bannedFiles = set()
+    privateFiles = set()
     for root, _, filenames in os.walk(ROOT):
         for f in filenames:
             full = os.path.join(root, f)
             rel = os.path.relpath(full, ROOT).replace("\\", "/")
             if not should_ignore(rel):
                 if "-P-" in rel:
-                    bannedFiles.add(rel)
+                    privateFiles.add(rel)
                 else:
                     allowedFiles.add(rel)
-    return allowedFiles, bannedFiles
+    return allowedFiles, privateFiles
 
 
 def read_old():
@@ -106,11 +106,11 @@ def archive_deleted(repoA, deleted_files):
 # ---------- Live Repo Sync ----------
 
 
-def sync_live(repoA, uploadableFiles, removableFiles):
+def sync_live(repoA, uploadableFiles, privateFiles):
     for file in uploadableFiles:
         repoA.index.add([file])
 
-    for file in removableFiles:
+    for file in privateFiles:
         try:
             repoA.git.rm("--cached", file)
         except:
@@ -128,9 +128,10 @@ def main():
     repoA = Repo(LIVE_REPO_PATH)
 
     old_files = read_old()
-    new_files, bannedFiles = scan_files()
+    new_files, privateFiles = scan_files()
 
-    deleted = old_files - new_files
+    all_current = new_files | privateFiles
+    deleted = old_files - all_current
 
     print("Scanned.")
 
@@ -139,7 +140,7 @@ def main():
     print("Archived.")
 
     # Step 2: Sync live repo
-    sync_live(repoA, new_files, bannedFiles)
+    sync_live(repoA, new_files, privateFiles)
     print("Live updated.")
 
     # Step 3: Update memory LAST
