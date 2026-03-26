@@ -12,18 +12,29 @@ LOG_FILE = "Projects/GitCommitter/ListOfFiles.txt"
 
 
 def should_ignore(path):
-    return path.startswith(".") or "/." in path or "-P-" in path
+    return (
+        path.startswith(".")
+        or "/." in path
+        or "VEnv" in path
+        or "venv" in path
+        or "Django" in path
+        or "FlaskDB" in path
+    )
 
 
 def scan_files():
-    files = set()
+    allowedFiles = set()
+    bannedFiles = set()
     for root, _, filenames in os.walk(ROOT):
         for f in filenames:
             full = os.path.join(root, f)
             rel = os.path.relpath(full, ROOT).replace("\\", "/")
             if not should_ignore(rel):
-                files.add(rel)
-    return files
+                if "-P-" in rel:
+                    bannedFiles.add(rel)
+                else:
+                    allowedFiles.add(rel)
+    return allowedFiles, bannedFiles
 
 
 def read_old():
@@ -80,11 +91,11 @@ def archive_deleted(repoA, deleted_files):
 
             except KeyError:
                 print("NEVER WAS")
-                continue  # file never committed before
+                continue
 
         if added:
             repoB.index.add(added)
-            repoB.index.commit(f"[{date.today()}] My you RIP")
+            repoB.index.commit(f"[{date.today()}] May you RIP")
             repoB.git.branch("-M", "main")
             repoB.remote("origin").push(refspec="main:main")
 
@@ -95,12 +106,18 @@ def archive_deleted(repoA, deleted_files):
 # ---------- Live Repo Sync ----------
 
 
-def sync_live(repoA):
-    # Add/update new + modified
-    repoA.git.add(A=True)
+def sync_live(repoA, uploadableFiles, removableFiles):
+    for file in uploadableFiles:
+        repoA.index.add([file])
+
+    for file in removableFiles:
+        try:
+            repoA.git.rm("--cached", file)
+        except:
+            continue
 
     if repoA.is_dirty(untracked_files=True):
-        repoA.index.commit(f"[{date.today()}] The Dragon gets Gold Shipment.")
+        repoA.index.commit(f"[{date.today()}] The Dragon gets a Gold Shipment.")
         repoA.remote("origin").push()
 
 
@@ -111,7 +128,7 @@ def main():
     repoA = Repo(LIVE_REPO_PATH)
 
     old_files = read_old()
-    new_files = scan_files()
+    new_files, bannedFiles = scan_files()
 
     deleted = old_files - new_files
 
@@ -122,7 +139,7 @@ def main():
     print("Archived.")
 
     # Step 2: Sync live repo
-    sync_live(repoA)
+    sync_live(repoA, new_files, bannedFiles)
     print("Live updated.")
 
     # Step 3: Update memory LAST

@@ -1,3 +1,0 @@
-Step 1: Run “django-admin startproject <projectName>”
-Step 2: cd into the project & Run “python manage.py startapp core”
-Step 3: Go into settings.py & add 'core' into the INSTALLED_FILES

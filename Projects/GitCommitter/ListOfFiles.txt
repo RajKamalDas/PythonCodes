@@ -89,7 +89,6 @@ Projects/Persevex/Project 2/order_products__prior.csv
 Projects/Persevex/Project 2/product_association_network.png
 Projects/Persevex/Project 2/products.csv
 Projects/Persevex/Project 2/rules.py
-Projects/img.pkl
 Python.code-workspace
 README.md
 Training/CSV.py
