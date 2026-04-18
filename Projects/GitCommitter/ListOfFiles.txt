@@ -5,8 +5,10 @@ ClassWork/Sorts.py
 ClassWork/ToH.py
 ClassWork/Transpose.py
 ClassWork/Tree.py
+For Fun/The Den/__pycache__/combatHandler.cpython-314.pyc
 For Fun/The Den/__pycache__/event.cpython-314.pyc
 For Fun/The Den/__pycache__/map.cpython-314.pyc
+For Fun/The Den/__pycache__/player.cpython-314.pyc
 For Fun/The Den/combatHandler.py
 For Fun/The Den/main.py
 For Fun/The Den/map.py
