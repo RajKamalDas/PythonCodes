@@ -3,6 +3,11 @@ from map import DungeonMap
 from player import Player
 from combatHandler import ConflictHandler
 
+
+def rgb(hex):
+    return tuple(bytes.fromhex(hex.lstrip("#")))
+
+
 pygame.init()
 
 
@@ -23,7 +28,7 @@ while running:
             running = False
 
     eID = 0
-    screen.fill("black")
+    screen.fill(rgb("#2D373A"))
 
     if gameState == "map":
         dungeon.draw(screen, player.loc)

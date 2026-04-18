@@ -5,6 +5,12 @@ ClassWork/Sorts.py
 ClassWork/ToH.py
 ClassWork/Transpose.py
 ClassWork/Tree.py
+For Fun/The Den/__pycache__/event.cpython-314.pyc
+For Fun/The Den/__pycache__/map.cpython-314.pyc
+For Fun/The Den/combatHandler.py
+For Fun/The Den/main.py
+For Fun/The Den/map.py
+For Fun/The Den/player.py
 For Fun/Whatever this grid thing is/GridNotRigid.py
 Others/5minSpam.py
 Others/APITest.py

@@ -2,6 +2,10 @@ import pygame
 import random
 
 
+def rgb(hex):
+    return tuple(bytes.fromhex(hex.lstrip("#")))
+
+
 class DungeonMap:
     def __init__(self, gridSize=8, weights=[50, 30]):
         self.height = 640
@@ -39,7 +43,7 @@ class DungeonMap:
                 if not cell:
                     pygame.draw.rect(
                         screen,
-                        "grey",
+                        rgb("#C9C9C9"),
                         (
                             self.offset + self.cellSize * j,
                             self.offset + self.cellSize * i,
